@@ -21,6 +21,7 @@ public class HasAnyPermissionsTag extends PermissionTag {
 		boolean hasAnyPermission = false;
 
 		Subject subject = getSubject();
+		System.out.println("permissionNames:" + permissionNames);
 
 		if (subject != null) {
 			// Iterate through permissions and check to see if the user has one of the permissions

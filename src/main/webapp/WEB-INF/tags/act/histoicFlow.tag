@@ -9,6 +9,7 @@
 		正在加载流转信息...
 	</div>
 </fieldset>
+<!-- tag文件主要是一小段代码，相当于include的作用， tld文件比较复杂，涉及的内容较多 -->
 <script type="text/javascript">
 	$.get("${ctx}/act/task/histoicFlow?procInsId=${procInsId}&startAct=${startAct}&endAct=${endAct}&t="+new Date().getTime(), function(data){
 		$("#histoicFlowList").html(data);

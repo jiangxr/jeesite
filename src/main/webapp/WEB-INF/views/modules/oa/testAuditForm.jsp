@@ -32,7 +32,7 @@
 	</ul>
 	<form:form id="inputForm" modelAttribute="testAudit" action="${ctx}/oa/testAudit/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<form:hidden path="act.taskId"/>
+		<form:hidden path="act.taskId" />
 		<form:hidden path="act.taskName"/>
 		<form:hidden path="act.taskDefKey"/>
 		<form:hidden path="act.procInsId"/>

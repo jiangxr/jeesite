@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.act.web;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,15 +18,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.act.entity.Act;
 import com.thinkgem.jeesite.modules.act.service.ActTaskService;
 import com.thinkgem.jeesite.modules.act.utils.ActUtils;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
+import com.thinkgem.jeesite.modules.test.entity.Askforleave;
 
 /**
  * 流程个人任务相关Controller
@@ -272,5 +276,25 @@ public class ActTaskController extends BaseController {
 			addMessage(redirectAttributes, "删除任务成功，任务ID=" + taskId);
 		}
 		return "redirect:" + adminPath + "/act/task";
+	}
+	
+	@RequiresPermissions("act:process:edit")
+	@RequestMapping(value = "taskBackOne/{proInsId}", method = RequestMethod.POST)
+	public String taskBackOne(@PathVariable("proInsId") String proInsId, Act act, Model model) {
+		HashMap<String, Object>map = Maps.newHashMap();
+		List<Act> list = actTaskService.todoList(act);
+		model.addAttribute("list", list);
+		actTaskService.taskBack(proInsId, map);
+		return "modules/act/actTaskTodoList";
+	}
+	
+	@RequiresPermissions("act:process:edit")
+	@RequestMapping(value = "taskForwardOne/{proInsId}", method = RequestMethod.POST)
+	public String taskForwardOne(@PathVariable("proInsId") String proInsId, Act act, Model model) {
+		HashMap<String, Object>map = Maps.newHashMap();
+		List<Act> list = actTaskService.todoList(act);
+		model.addAttribute("list", list);
+		actTaskService.taskForward(proInsId, map);
+		return "modules/act/actTaskTodoList";
 	}
 }

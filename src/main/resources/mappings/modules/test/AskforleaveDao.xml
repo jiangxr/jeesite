@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.test.dao.AskforleaveDao">
+    
+	<sql id="askforleaveColumns">
+		a.id AS "id",
+		a.applicant AS "applicant",
+		a.leavetype AS "leavetype",
+		a.reason AS "reason",
+		a.begintime AS "begintime",
+		a.endtime AS "endtime",
+		a.ismanager AS "ismanager",
+		a.comment AS "comment"
+	</sql>
+	
+	<sql id="askforleaveJoins">
+	</sql>
+    
+	<select id="get" resultType="Askforleave">
+		SELECT 
+			<include refid="askforleaveColumns"/>
+		FROM askforleave a
+		<include refid="askforleaveJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Askforleave">
+		SELECT 
+			<include refid="askforleaveColumns"/>
+		FROM askforleave a
+		<include refid="askforleaveJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Askforleave">
+		SELECT 
+			<include refid="askforleaveColumns"/>
+		FROM askforleave a
+		<include refid="askforleaveJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO askforleave(
+			id,
+			applicant,
+			leavetype,
+			reason,
+			begintime,
+			endtime,
+			ismanager
+		) VALUES (
+			#{id},
+			#{applicant},
+			#{leavetype},
+			#{reason},
+			#{begintime},
+			#{endtime},
+			#{ismanager}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE askforleave SET 	
+			applicant = #{applicant},
+			leavetype = #{leavetype},
+			reason = #{reason},
+			begintime = #{begintime},
+			endtime = #{endtime},
+			ismanager = #{ismanager}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="updateComment">
+		UPDATE askforleave SET 
+			comment = #{comment}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM askforleave
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -80,6 +80,9 @@ public class TestAuditController extends BaseController {
 			// 环节编号
 			String taskDefKey = testAudit.getAct().getTaskDefKey();
 			
+			System.out.println("testAudit.getAct().isFinishTask():" + testAudit.getAct().isFinishTask());
+			System.out.println("taskDefKey:" + taskDefKey);
+			
 			// 查看工单
 			if(testAudit.getAct().isFinishTask()){
 				view = "testAuditView";

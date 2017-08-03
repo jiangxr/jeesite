@@ -20,6 +20,7 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
  * @author ThinkGem
  * @version 2014-05-16
  */
+//@Transactional这个注解表明当这个类中的方法对数据库操作时，当操作失败后，事物的回滚有spring进行操作。
 @Transactional(readOnly = true)
 public abstract class BaseService {
 	

@@ -75,7 +75,7 @@ import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
  * @version 2013-11-03
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 public class ActTaskService extends BaseService {
 
 	@Autowired

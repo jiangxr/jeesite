@@ -3,6 +3,7 @@
 <html>
 <head>
 	<title>${fns:getConfig('productName')}</title>
+	<!-- 下面一个meta表示应用装饰页面 -->
 	<meta name="decorator" content="blank"/><c:set var="tabmode" value="${empty cookie.tabmode.value ? '0' : cookie.tabmode.value}"/>
     <c:if test="${tabmode eq '1'}"><link rel="Stylesheet" href="${ctxStatic}/jerichotab/css/jquery.jerichotab.css" />
     <script type="text/javascript" src="${ctxStatic}/jerichotab/js/jquery.jerichotab.js"></script></c:if>
@@ -147,7 +148,8 @@
 </head>
 <body>
 	<div id="main">
-		<div id="header" class="navbar navbar-fixed-top">
+		<!--  <div id="header" class="navbar navbar-fixed-top"> -->
+		<div id="header" class="navbar">
 			<div class="navbar-inner">
 				<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
 				<ul id="userControl" class="nav pull-right">

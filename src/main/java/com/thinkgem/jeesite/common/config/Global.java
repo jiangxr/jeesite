@@ -161,6 +161,7 @@ public class Global {
 		}
 		try {
 			File file = new DefaultResourceLoader().getResource("").getFile();
+			System.out.println("111111111111111111111111111:" + file.getPath());
 			if (file != null){
 				while(true){
 					File f = new File(file.getPath() + File.separator + "src" + File.separator + "main");
